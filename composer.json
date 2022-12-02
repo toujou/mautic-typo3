@@ -31,7 +31,7 @@
         "typo3/cms-form": "^11.5",
         "typo3/cms-extbase": "^11.5",
         "typo3/cms-fluid": "^11.5",
-        "leuchtfeuer/marketing-automation": "dev-v11",
+        "leuchtfeuer/marketing-automation": "v11.x-dev",
         "mautic/api-library": "^3.0",
         "php-http/multipart-stream-builder": "^1.1.2"
     },
@@ -68,5 +68,11 @@
             "cms-package-dir": "{$vendor-dir}/typo3/cms",
             "web-dir": "Build/web"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:toujou/typo3-marketing-automation.git"
+        }
+    ]
 }

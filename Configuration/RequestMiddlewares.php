@@ -1,10 +1,12 @@
 <?php
 declare(strict_types = 1);
 
+use Bitmotion\Mautic\Middleware\AuthorizeMiddleware;
+
 return [
     'frontend' => [
         'bitmotion/mautic/authorize' => [
-            'target' => \Bitmotion\Mautic\Middleware\AuthorizeMiddleware::class,
+            'target' => AuthorizeMiddleware::class,
             'after' => [
                 'typo3/cms-frontend/backend-user-authentication',
             ],

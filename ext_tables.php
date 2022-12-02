@@ -1,5 +1,5 @@
 <?php
-defined('TYPO3_MODE') || die;
+defined('TYPO3') || die;
 
 call_user_func(
     function ($extensionKey) {
@@ -20,7 +20,7 @@ call_user_func(
         );
 
         // Backend Module
-        if (version_compare(TYPO3_version, '10.0.0', '<')) {
+        if (version_compare(\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class)->getVersion(), '10.0.0', '<')) {
             $extensionName = 'Bitmotion.Mautic';
             $controllerName = 'Backend';
         }

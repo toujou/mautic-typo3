@@ -339,7 +339,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
             $folderIdentifier .= '/';
         }
 
-        return GeneralUtility::isFirstPartOfStr($entryIdentifier, $folderIdentifier);
+        return \str_starts_with($entryIdentifier, $folderIdentifier);
     }
 
     public function getFolderInfoByIdentifier($folderIdentifier): array

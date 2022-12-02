@@ -12,7 +12,7 @@ namespace Bitmotion\Mautic\Controller;
  *  (c) 2020 Florian Wessels <f.wessels@Leuchtfeuer.com>, Leuchtfeuer Digital Marketing
  *
  ***/
-
+use Psr\Http\Message\ResponseInterface;
 use Bitmotion\Mautic\Mautic\AuthorizationFactory;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -20,13 +20,14 @@ class FrontendController extends ActionController
 {
     const DEFAULT_TEMPLATE_PATH = 'EXT:mautic/Resources/Private/Templates/Form.html';
 
-    public function formAction()
+    public function formAction(): ResponseInterface
     {
         $this->view->setTemplatePathAndFilename($this->getTemplatePath());
         $this->view->assignMultiple([
             'mauticBaseUrl' => AuthorizationFactory::createAuthorizationFromExtensionConfiguration()->getBaseUrl(),
             'data' => $this->configurationManager->getContentObject()->data,
         ]);
+        return $this->htmlResponse();
     }
 
     protected function getTemplatePath(): string

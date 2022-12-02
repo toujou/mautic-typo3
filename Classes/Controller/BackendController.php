@@ -12,7 +12,8 @@ namespace Bitmotion\Mautic\Controller;
  *  (c) 2020 Florian Wessels <f.wessels@Leuchtfeuer.com>, Leuchtfeuer Digital Marketing
  *
  ***/
-
+use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
+use Psr\Http\Message\ResponseInterface;
 use Bitmotion\Mautic\Domain\Model\AccessTokenData;
 use Bitmotion\Mautic\Domain\Model\Dto\YamlConfiguration;
 use Bitmotion\Mautic\Service\MauticAuthorizeService;
@@ -25,11 +26,15 @@ use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
 class BackendController extends ActionController
 {
     const FLASH_MESSAGE_QUEUE = 'marketingautomation.mautic.flashMessages';
-
-    protected $defaultViewObjectName = BackendTemplateView::class;
-
-    public function showAction()
+    private ModuleTemplateFactory $moduleTemplateFactory;
+    public function __construct(ModuleTemplateFactory $moduleTemplateFactory)
     {
+        $this->moduleTemplateFactory = $moduleTemplateFactory;
+    }
+
+    public function showAction(): ResponseInterface
+    {
+        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
         $emConfiguration = GeneralUtility::makeInstance(YamlConfiguration::class);
         $authorizeService = GeneralUtility::makeInstance(MauticAuthorizeService::class);
 
@@ -42,6 +47,8 @@ class BackendController extends ActionController
         }
 
         $this->view->assign('configuration', $emConfiguration);
+        $moduleTemplate->setContent($this->view->render());
+        return $this->htmlResponse($moduleTemplate->renderContent());
     }
 
     /**

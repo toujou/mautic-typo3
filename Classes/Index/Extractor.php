@@ -12,7 +12,7 @@ namespace Bitmotion\Mautic\Index;
  *  (c) 2020 Florian Wessels <f.wessels@Leuchtfeuer.com>, Leuchtfeuer Digital Marketing
  *
  ***/
-
+use TYPO3\CMS\Core\Resource\File;
 use Bitmotion\Mautic\Domain\Repository\AssetRepository;
 use Bitmotion\Mautic\Driver\AssetDriver;
 use TYPO3\CMS\Core\Resource;
@@ -22,7 +22,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Extractor implements ExtractorInterface
 {
-    public function extractMetaData(Resource\File $file, array $previousExtractedData = []): array
+    public function extractMetaData(File $file, array $previousExtractedData = []): array
     {
         $asset = $this->getAsset($file);
         $data = [];
@@ -61,7 +61,7 @@ class Extractor implements ExtractorInterface
         return [];
     }
 
-    public function canProcess(Resource\File $file): bool
+    public function canProcess(File $file): bool
     {
         return $file->getStorage()->getDriverType() === AssetDriver::DRIVER_TYPE;
     }
@@ -71,7 +71,7 @@ class Extractor implements ExtractorInterface
         return [AssetDriver::DRIVER_TYPE];
     }
 
-    protected function getAsset(Resource\File $file): array
+    protected function getAsset(File $file): array
     {
         $mauticAlias = ltrim($file->getIdentifier(), '/asset/');
         $assetApi = GeneralUtility::makeInstance(AssetRepository::class);

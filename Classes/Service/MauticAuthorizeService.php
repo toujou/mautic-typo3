@@ -12,7 +12,7 @@ namespace Bitmotion\Mautic\Service;
  *  (c) 2020 Florian Wessels <f.wessels@Leuchtfeuer.com>, Leuchtfeuer Digital Marketing
  *
  ***/
-
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use Bitmotion\Mautic\Controller\BackendController;
 use Bitmotion\Mautic\Domain\Model\AccessTokenData;
 use Bitmotion\Mautic\Domain\Model\Dto\YamlConfiguration;
@@ -169,7 +169,7 @@ class MauticAuthorizeService
                 $message ?? ''
             );
 
-            $this->createMessage($message, $title, FlashMessage::ERROR, true);
+            $this->createMessage($message, $title, AbstractMessage::ERROR, true);
 
             return true;
         }
@@ -216,7 +216,7 @@ class MauticAuthorizeService
     {
         $title = $title ?: $this->translate('authorization.error.title');
         $message = $this->translate('authorization.error.message.' . $message) ?: $message ?: $this->translate('authorization.error.message');
-        $this->createMessage($message, $title, FlashMessage::ERROR, true);
+        $this->createMessage($message, $title, AbstractMessage::ERROR, true);
     }
 
     protected function addFlashMessage(FlashMessage $message): void
@@ -230,14 +230,14 @@ class MauticAuthorizeService
     {
         $title = $title ?: $this->translate('authorization.warning.title');
         $message = $message ?: $this->translate('authorization.warning.message');
-        $this->createMessage($message, $title, FlashMessage::WARNING, true);
+        $this->createMessage($message, $title, AbstractMessage::WARNING, true);
     }
 
     protected function showSuccessMessage(?string $title = null, ?string $message = null): void
     {
         $title = $title ?: $this->translate('authorization.success.title');
         $message = $message ?: $this->translate('authorization.success.message');
-        $this->createMessage($message, $title, FlashMessage::OK, true);
+        $this->createMessage($message, $title, AbstractMessage::OK, true);
     }
 
     protected function showIncorrectVersionInformation(string $version): void

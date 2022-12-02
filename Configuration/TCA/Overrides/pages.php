@@ -1,6 +1,8 @@
 <?php
 declare(strict_types = 1);
-defined('TYPO3_MODE') || die();
+
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+defined('TYPO3') || die();
 
 $temporaryColumns = [
     'tx_mautic_tags' => [
@@ -9,7 +11,6 @@ $temporaryColumns = [
         'config' => [
             'type' => 'select',
             'renderType' => 'selectMultipleSideBySide',
-            'enableMultiSelectFilterTextfield' => true,
             'foreign_table' => 'tx_mautic_domain_model_tag',
             'foreign_table_where' => 'ORDER BY title',
             'MM' => 'tx_mautic_page_tag_mm',
@@ -33,8 +34,8 @@ $temporaryColumns = [
     ],
 ];
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $temporaryColumns);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+ExtensionManagementUtility::addTCAcolumns('pages', $temporaryColumns);
+ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
     '--div--;LLL:EXT:mautic/Resources/Private/Language/locallang_tca.xlf:mautic,tx_mautic_tags'
 );

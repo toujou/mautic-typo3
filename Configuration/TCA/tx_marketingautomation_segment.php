@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-defined('TYPO3_MODE') || die();
+defined('TYPO3') || die();
 
 return [
     'ctrl' => [
@@ -19,9 +19,6 @@ return [
         'security' => [
             'ignoreRootLevelRestriction' => true,
         ],
-    ],
-    'interface' => [
-        'showRecordFieldList' => 'title',
     ],
     'types' => [
         '1' => [

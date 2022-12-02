@@ -12,7 +12,7 @@ namespace Bitmotion\Mautic\Domain\Repository;
  *  (c) 2020 Florian Wessels <f.wessels@Leuchtfeuer.com>, Leuchtfeuer Digital Marketing
  *
  ***/
-
+use TYPO3\CMS\Core\Context\Context;
 use Doctrine\DBAL\DBALException;
 use Mautic\Api\Segments;
 use Mautic\Exception\ContextNotFoundException;
@@ -82,7 +82,7 @@ class SegmentRepository extends AbstractRepository
             if (!empty($segment['dateModified'])) {
                 $dateModified = \DateTime::createFromFormat('Y-m-d\TH:i:sP', $segment['dateModified']);
             } else {
-                $dateModified = \DateTime::createFromFormat('U', (string)$GLOBALS['EXEC_TIME']);
+                $dateModified = \DateTime::createFromFormat('U', (string)GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp'));
             }
 
             if (!isset($availableSegments[$segment['id']])) {

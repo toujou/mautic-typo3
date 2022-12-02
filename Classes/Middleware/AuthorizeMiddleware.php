@@ -12,7 +12,7 @@ namespace Bitmotion\Mautic\Middleware;
  *  (c) 2020 Florian Wessels <f.wessels@Leuchtfeuer.com>, Leuchtfeuer Digital Marketing
  *
  ***/
-
+use function GuzzleHttp\json_decode;
 use Bitmotion\Mautic\Domain\Model\AccessTokenData;
 use Bitmotion\Mautic\Domain\Model\Dto\YamlConfiguration;
 use Bitmotion\Mautic\Domain\Repository\SegmentRepository;
@@ -122,7 +122,7 @@ class AuthorizeMiddleware implements MiddlewareInterface, LoggerAwareInterface
             }
         } catch (UnexpectedResponseFormatException $exception) {
             try {
-                $errors = \GuzzleHttp\json_decode($exception->getResponse()->getBody(), true)['errors'];
+                $errors = json_decode($exception->getResponse()->getBody(), true)['errors'];
                 $error = array_shift($errors);
 
                 $title = sprintf('Error %d', $error['code']);
