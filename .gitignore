@@ -1,3 +1,7 @@
 /.php_cs.cache
 /.idea/*
 /Libraries/vendor
+/Build/bin/
+/Build/vendor/
+/Build/web/
+/composer.lock

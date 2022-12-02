@@ -11,16 +11,16 @@ $EM_CONF['mautic'] = [
     'author_company' => 'Leuchtfeuer Digital Marketing',
     'author_email' => 'dev@Leuchtfeuer.com',
     'clearCacheOnLoad' => 0,
-    'version' => '4.0.1',
+    'version' => '5.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.2-10.4.99',
-            'marketing_automation' => '1.2.3-1.2.99',
+            'typo3' => '11.5.*',
+            'marketing_automation' => '*',
         ],
         'conflicts' => [],
         'suggests' => [
             'static_info_tables' => '6.7.0',
-            'form' => '10.4.0'
+            'form' => '11.5.*'
         ],
     ],
 ];
