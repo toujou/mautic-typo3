@@ -31,7 +31,7 @@
         "typo3/cms-form": "^11.5",
         "typo3/cms-extbase": "^11.5",
         "typo3/cms-fluid": "^11.5",
-        "leuchtfeuer/marketing-automation": "v11.x-dev",
+        "leuchtfeuer/marketing-automation": "dev-typo3-v11",
         "mautic/api-library": "^3.0",
         "php-http/multipart-stream-builder": "^1.1.2"
     },
