@@ -94,19 +94,6 @@ call_user_func(function () {
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
 
-
-    ###################
-    #      ICONS      #
-    ###################
-    $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-    $icons = [
-        'tx_mautic-mautic-icon' => 'EXT:mautic/Resources/Public/Icons/Extension.svg',
-    ];
-
-    foreach ($icons as $identifier => $source) {
-    }
-
-
     ###################
     #     EXTCONF     #
     ###################
@@ -118,7 +105,6 @@ call_user_func(function () {
             ]
         ];
     }
-
 
     #######################
     # FORM TRANSFORMATION #

@@ -22,7 +22,7 @@ ExtensionManagementUtility::addTcaSelectItem(
 /***************
  * Configure element type
  */
-if (!is_array($GLOBALS['TCA']['tt_content']['types']['mautic_form'])) {
+if (!isset($GLOBALS['TCA']['tt_content']['types']['mautic_form']) || !is_array($GLOBALS['TCA']['tt_content']['types']['mautic_form'])) {
     $GLOBALS['TCA']['tt_content']['types']['mautic_form'] = [];
 }
 $GLOBALS['TCA']['tt_content']['types']['mautic_form'] = array_replace_recursive(
