@@ -69,10 +69,9 @@
             "web-dir": "Build/web"
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:toujou/typo3-marketing-automation.git"
-        }
-    ]
+  "repositories": [
+    {"type": "composer", "url": "https://toujou-repo.kodzutsumi-senta.toujou.systems"},
+    {"type": "composer", "url": "https://repo.kodzutsumi-senta.toujou.systems"},
+    {"packagist": false}
+  ]
 }
