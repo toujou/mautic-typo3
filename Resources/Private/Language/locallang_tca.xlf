@@ -6,12 +6,6 @@
             <trans-unit id="mautic">
                 <source>Mautic</source>
             </trans-unit>
-            <trans-unit id="tx_marketingautomation_persona.segments">
-                <source>Segments</source>
-            </trans-unit>
-            <trans-unit id="tx_marketingautomation_segment">
-                <source>Segment</source>
-            </trans-unit>
 
             <trans-unit id="tx_mautic_domain_model_tag">
                 <source>Tag</source>

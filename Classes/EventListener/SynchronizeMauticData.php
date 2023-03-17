@@ -16,9 +16,5 @@ class SynchronizeMauticData
         if (isset($body['tx_mautic_domain_model_tag']) && (bool)$body['tx_mautic_domain_model_tag']['updateTags']) {
             GeneralUtility::makeInstance(TagRepository::class)->synchronizeTags();
         }
-
-        if (isset($body['tx_marketingautomation_segments']) && (bool)$body['tx_marketingautomation_segments']['updateSegments']) {
-            GeneralUtility::makeInstance(SegmentRepository::class)->synchronizeSegments();
-        }
     }
 }
