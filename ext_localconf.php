@@ -11,13 +11,6 @@ call_user_func(function () {
         }
     }
 
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('marketing_automation') === false) {
-        throw new \Exception('Required extension is not loaded: EXT:marketing_automation.');
-    }
-
-    $marketingDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\Bitmotion\MarketingAutomation\Dispatcher\Dispatcher::class);
-    $marketingDispatcher->addSubscriber(\Bitmotion\Mautic\Slot\MauticSubscriber::class);
-
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
         '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:mautic/Configuration/PageTS/Mod/Wizards/NewContentElement.tsconfig">'
     );
@@ -25,8 +18,6 @@ call_user_func(function () {
     ###################
     #      HOOKS      #
     ###################
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['settingLanguage_postProcess']['mautic'] =
-        \Bitmotion\Mautic\Slot\MauticSubscriber::class . '->setPreferredLocale';
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['configArrayPostProc']['mautic'] =
         \Bitmotion\Mautic\Hooks\MauticTrackingHook::class . '->addTrackingCode';
@@ -53,12 +44,6 @@ call_user_func(function () {
         'before' => [
             \TYPO3\CMS\Backend\Form\FormDataProvider\TcaSelectItems::class,
         ],
-    ];
-
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1530047235] = [
-        'nodeName' => 'updateSegmentsControl',
-        'priority' => 30,
-        'class' => \Bitmotion\Mautic\FormEngine\FieldControl\UpdateSegmentsControl::class,
     ];
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1551778913] = [

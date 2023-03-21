@@ -6,13 +6,6 @@
             <trans-unit id="mautic">
                 <target>Mautic</target>
             </trans-unit>
-            <trans-unit id="tx_marketingautomation_persona.segments">
-                <target>Segmente</target>
-            </trans-unit>
-            <trans-unit id="tx_marketingautomation_segment">
-                <target>Segment</target>
-            </trans-unit>
-
             <trans-unit id="content_element.mautic_form">
                 <target>Mautic Formular</target>
             </trans-unit>
