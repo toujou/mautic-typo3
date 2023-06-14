@@ -107,7 +107,7 @@ class TagRepository extends AbstractRepository
 
         $availableTags = [];
 
-        while ($row = $result->fetch()) {
+        while ($row = $result->fetchAssociative()) {
             $availableTags[$row['uid']] = $row;
         }
 

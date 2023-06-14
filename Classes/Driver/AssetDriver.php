@@ -569,7 +569,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
             ->from('sys_file')
             ->where($queryBuilder->expr()->eq('storage', $this->storageUid))
             ->execute()
-            ->fetchAll();
+            ->fetchAllAssociative();
     }
 
     protected function getFileByIdentifier(string $identifier): array
@@ -582,7 +582,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
             ->where($queryBuilder->expr()->eq('storage', $this->storageUid))
             ->andWhere($queryBuilder->expr()->eq('identifier', $queryBuilder->createNamedParameter('/' . $identifier)))
             ->execute()
-            ->fetch();
+            ->fetchAssociative();
 
         return ($file === false) ? [] : $file;
     }

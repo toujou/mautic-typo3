@@ -103,7 +103,7 @@ class CountryListFormElement extends GenericFormElement implements LoggerAwareIn
                     )
                 )
                 ->execute()
-                ->fetchAll();
+                ->fetchAllAssociative();
 
             foreach ($countryNames as $countryName) {
                 if (!empty($countryName['cn_short_' . $this->locale])) {
