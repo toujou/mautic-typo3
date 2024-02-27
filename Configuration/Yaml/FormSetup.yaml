@@ -4,8 +4,10 @@ imports:
   - { resource: "./FormElements/Date.yaml" }
   - { resource: "./FormElements/DatePicker.yaml" }
   - { resource: "./FormElements/Email.yaml" }
+  - { resource: "./FormElements/FileUpload.yaml" }
   - { resource: "./FormElements/Form.yaml" }
   - { resource: "./FormElements/Hidden.yaml" }
+  - { resource: "./FormElements/ImageUpload.yaml" }
   - { resource: "./FormElements/MultiCheckbox.yaml" }
   - { resource: "./FormElements/MultiSelect.yaml" }
   - { resource: "./FormElements/Number.yaml" }

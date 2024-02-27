@@ -109,9 +109,9 @@ call_user_func(function () {
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['mautic']['transformation']['formField']['Email'] = \Bitmotion\Mautic\Transformation\FormField\EmailTransformation::class;
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['mautic']['transformation']['formField']['GridRow'] = \Bitmotion\Mautic\Transformation\FormField\IgnoreTransformation::class;
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['mautic']['transformation']['formField']['Fieldset'] = \Bitmotion\Mautic\Transformation\FormField\IgnoreTransformation::class;
-    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['mautic']['transformation']['formField']['FileUpload'] = \Bitmotion\Mautic\Transformation\FormField\IgnoreTransformation::class;
+    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['mautic']['transformation']['formField']['FileUpload'] = \Bitmotion\Mautic\Transformation\FormField\FileTransformation::class;
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['mautic']['transformation']['formField']['Hidden'] = \Bitmotion\Mautic\Transformation\FormField\HiddenTransformation::class;
-    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['mautic']['transformation']['formField']['ImageUpload'] = \Bitmotion\Mautic\Transformation\FormField\IgnoreTransformation::class;
+    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['mautic']['transformation']['formField']['ImageUpload'] = \Bitmotion\Mautic\Transformation\FormField\FileTransformation::class;
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['mautic']['transformation']['formField']['MultiCheckbox'] = \Bitmotion\Mautic\Transformation\FormField\MultiCheckboxTransformation::class;
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['mautic']['transformation']['formField']['MultiSelect'] = \Bitmotion\Mautic\Transformation\FormField\MultiSelectTransformation::class;
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['mautic']['transformation']['formField']['Number'] = \Bitmotion\Mautic\Transformation\FormField\NumberTransformation::class;
