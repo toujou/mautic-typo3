@@ -14,8 +14,6 @@ namespace Bitmotion\Mautic\Middleware;
  ***/
 use function GuzzleHttp\json_decode;
 use Bitmotion\Mautic\Domain\Model\AccessTokenData;
-use Bitmotion\Mautic\Domain\Model\Dto\YamlConfiguration;
-use Bitmotion\Mautic\Domain\Repository\SegmentRepository;
 use Bitmotion\Mautic\Domain\Repository\TagRepository;
 use Bitmotion\Mautic\Mautic\AuthorizationFactory;
 use Bitmotion\Mautic\Mautic\OAuth;
@@ -33,7 +31,6 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\UserAspect;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Http\Stream;
-use TYPO3\CMS\Core\Registry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
@@ -115,7 +112,6 @@ class AuthorizeMiddleware implements MiddlewareInterface, LoggerAwareInterface
 
                 /** @var ObjectManager $objectManager */
                 $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-                $objectManager->get(SegmentRepository::class)->initializeSegments();
                 $objectManager->get(TagRepository::class)->synchronizeTags();
 
                 return null;

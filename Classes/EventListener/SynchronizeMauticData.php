@@ -2,7 +2,6 @@
 
 namespace Bitmotion\Mautic\EventListener;
 
-use Bitmotion\Mautic\Domain\Repository\SegmentRepository;
 use Bitmotion\Mautic\Domain\Repository\TagRepository;
 use TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
