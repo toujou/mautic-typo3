@@ -17,6 +17,7 @@ use Bitmotion\Mautic\Domain\Repository\FormRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 use TYPO3\CMS\Form\Domain\Model\FormElements\DatePicker;
+use TYPO3\CMS\Form\Domain\Model\FormElements\FileUpload;
 use TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement;
 
 class MauticFinisher extends AbstractFinisher
@@ -60,7 +61,7 @@ class MauticFinisher extends AbstractFinisher
 
             $formElement = $this->finisherContext->getFormRuntime()->getFormDefinition()->getElementByIdentifier($key);
 
-            if ($formElement instanceof GenericFormElement || $formElement instanceof DatePicker) {
+            if ($formElement instanceof GenericFormElement || $formElement instanceof DatePicker || $formElement instanceof FileUpload) {
                 $properties = $formElement->getProperties();
                 if (!empty($properties['mauticAlias'])) {
                     $mauticStructure[$properties['mauticAlias']] = $value;

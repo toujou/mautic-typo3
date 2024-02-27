@@ -13,6 +13,7 @@ namespace Bitmotion\Mautic\Service;
  *
  ***/
 
+use Http\Factory\Guzzle\StreamFactory;
 use Http\Message\MultipartStream\MultipartStreamBuilder;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -24,6 +25,8 @@ use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\HttpFoundation\Cookie;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Form\Mvc\Property\TypeConverter\PseudoFileReference;
 
 class MauticSendFormService implements SingletonInterface, LoggerAwareInterface
 {
@@ -145,6 +148,14 @@ class MauticSendFormService implements SingletonInterface, LoggerAwareInterface
             $tempPath = $path . '[' . $key . ']';
             if (is_array($value)) {
                 $this->addDataToMultipartStreamBuilder($multipartStreamBuilder, $tempPath, $value);
+            } elseif ($value instanceof FileReference) {
+
+                $multipartStreamBuilder->addResource(
+                    $tempPath,
+                    (new StreamFactory())->createStream($value->getOriginalResource()->getContents()),
+                    ['filename' => $value->getOriginalResource()->getName()]
+                );
+
             } else {
                 $multipartStreamBuilder->addResource($tempPath, (string)$value);
             }
