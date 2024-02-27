@@ -149,13 +149,11 @@ class MauticSendFormService implements SingletonInterface, LoggerAwareInterface
             if (is_array($value)) {
                 $this->addDataToMultipartStreamBuilder($multipartStreamBuilder, $tempPath, $value);
             } elseif ($value instanceof FileReference) {
-
                 $multipartStreamBuilder->addResource(
                     $tempPath,
                     (new StreamFactory())->createStream($value->getOriginalResource()->getContents()),
                     ['filename' => $value->getOriginalResource()->getName()]
                 );
-
             } else {
                 $multipartStreamBuilder->addResource($tempPath, (string)$value);
             }

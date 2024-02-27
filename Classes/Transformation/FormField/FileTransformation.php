@@ -12,7 +12,6 @@ class FileTransformation extends AbstractFormFieldTransformation
 
     protected $type = 'file';
 
-
     /**
      * {@inheritdoc}
      */
