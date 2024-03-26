@@ -109,10 +109,8 @@ class AuthorizeMiddleware implements MiddlewareInterface, LoggerAwareInterface
                     AccessTokenData::set($accessTokenData);
                 }
 
-                /** @var ObjectManager $objectManager */
-                $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-                $objectManager->get(TagRepository::class)->synchronizeTags();
-
+                // TODO v12change: check if this works (or is necessary at all)
+                GeneralUtility::makeInstance(TagRepository::class)->synchronizeTags();
                 return null;
             }
         } catch (UnexpectedResponseFormatException $exception) {
