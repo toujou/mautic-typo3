@@ -9,8 +9,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class AccessTokenData
 {
 
-    const REGISTRY_NAMESPACE = 'mautic';
-    const REGISTRY_KEY = 'access_token_data';
+    public const REGISTRY_NAMESPACE = 'mautic';
+    public const REGISTRY_KEY = 'access_token_data';
 
     public static function get(): ?array
     {

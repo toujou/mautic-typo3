@@ -8,7 +8,6 @@ return [
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'delete' => 'deleted',
         'searchFields' => 'title',
         'typeicon_classes' => [
@@ -22,8 +21,7 @@ return [
     ],
     'types' => [
         '1' => [
-            'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,'
-                . 'title,'
+            'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,title,'
                 . '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
             ',
         ],
@@ -35,7 +33,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'width' => 200,
-                'eval' => 'trim,required',
+                'eval' => 'trim',
+                'required' => true,
             ],
         ],
         'items' => [

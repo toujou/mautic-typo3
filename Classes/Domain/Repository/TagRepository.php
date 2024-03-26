@@ -62,24 +62,20 @@ class TagRepository extends AbstractRepository
             ->update('tx_mautic_domain_model_tag')
             ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tag['id'], \PDO::PARAM_INT)))
             ->set('tstamp', $time)
-            ->set('title', $tag['tag'])
-            ->set('deleted', 0)
-            ->execute();
+            ->set('title', $tag['tag'])->set('deleted', 0)->executeStatement();
     }
 
     protected function insertTag(array $tag, int $time)
     {
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder
-            ->insert('tx_mautic_domain_model_tag')
-            ->values([
-                 'uid' => (int)$tag['id'],
-                 'crdate' => $time,
-                 'tstamp' => $time,
-                 'title' => $tag['tag'],
-                 'deleted' => 0,
-             ])
-             ->execute();
+            ->insert('tx_mautic_domain_model_tag')->values([
+             'uid' => (int)$tag['id'],
+             'crdate' => $time,
+             'tstamp' => $time,
+             'title' => $tag['tag'],
+             'deleted' => 0,
+         ])->executeStatement();
     }
 
     protected function getQueryBuilder(): QueryBuilder
@@ -90,9 +86,7 @@ class TagRepository extends AbstractRepository
     protected function deleteAllTags()
     {
         $this->getQueryBuilder()
-            ->update('tx_mautic_domain_model_tag')
-            ->set('deleted', 1)
-            ->execute();
+            ->update('tx_mautic_domain_model_tag')->set('deleted', 1)->executeStatement();
     }
 
     protected function getAvailableTags(): array
@@ -101,9 +95,7 @@ class TagRepository extends AbstractRepository
         $queryBuilder->getRestrictions()->removeAll();
 
         $result = $queryBuilder
-            ->select('*')
-            ->from('tx_mautic_domain_model_tag')
-            ->execute();
+            ->select('*')->from('tx_mautic_domain_model_tag')->executeQuery();
 
         $availableTags = [];
 

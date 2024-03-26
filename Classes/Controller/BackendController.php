@@ -25,7 +25,7 @@ use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
 
 class BackendController extends ActionController
 {
-    const FLASH_MESSAGE_QUEUE = 'marketingautomation.mautic.flashMessages';
+    public const FLASH_MESSAGE_QUEUE = 'marketingautomation.mautic.flashMessages';
     private ModuleTemplateFactory $moduleTemplateFactory;
     public function __construct(ModuleTemplateFactory $moduleTemplateFactory)
     {

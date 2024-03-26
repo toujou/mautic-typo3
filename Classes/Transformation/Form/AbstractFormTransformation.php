@@ -80,7 +80,7 @@ abstract class AbstractFormTransformation extends AbstractTransformation impleme
 
     public function addField(array $fieldDefinition)
     {
-        if (!empty($fieldDefinition)) {
+        if ($fieldDefinition !== []) {
             if (!isset($this->formData['fields'])) {
                 $this->formData['fields'] = [];
             }
@@ -147,11 +147,9 @@ abstract class AbstractFormTransformation extends AbstractTransformation impleme
                                         $this->formDefinition['renderables'][$formPageKey]['renderables'][$formElementKey]['renderables'][$containerElementKey]['renderables'][$containerElementInnerKey]['properties']['mauticAlias'] = str_replace('-', '_', $containerElementInner['identifier']);
                                     }
                                 }
-                            } else {
-                                if ($mauticField['alias'] === str_replace('-', '_', $containerElement['identifier'])) {
-                                    $this->formDefinition['renderables'][$formPageKey]['renderables'][$formElementKey]['renderables'][$containerElementKey]['properties']['mauticId'] = $mauticField['id'];
-                                    $this->formDefinition['renderables'][$formPageKey]['renderables'][$formElementKey]['renderables'][$containerElementKey]['properties']['mauticAlias'] = str_replace('-', '_', $containerElement['identifier']);
-                                }
+                            } elseif ($mauticField['alias'] === str_replace('-', '_', $containerElement['identifier'])) {
+                                $this->formDefinition['renderables'][$formPageKey]['renderables'][$formElementKey]['renderables'][$containerElementKey]['properties']['mauticId'] = $mauticField['id'];
+                                $this->formDefinition['renderables'][$formPageKey]['renderables'][$formElementKey]['renderables'][$containerElementKey]['properties']['mauticAlias'] = str_replace('-', '_', $containerElement['identifier']);
                             }
                         }
                     }

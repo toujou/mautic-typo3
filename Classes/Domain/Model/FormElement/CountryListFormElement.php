@@ -12,7 +12,7 @@ namespace Bitmotion\Mautic\Domain\Model\FormElement;
  *  (c) 2020 Florian Wessels <f.wessels@Leuchtfeuer.com>, Leuchtfeuer Digital Marketing
  *
  ***/
-
+use Doctrine\DBAL\ArrayParameterType;
 use Bitmotion\Mautic\Mautic\AuthorizationFactory;
 use Doctrine\DBAL\Connection;
 use Psr\Log\LoggerAwareInterface;
@@ -71,7 +71,7 @@ class CountryListFormElement extends GenericFormElement implements LoggerAwareIn
     protected function getCountries(): array
     {
         $report = [];
-        $countryJson = GeneralUtility::getUrl($this->baseUrl . $this->countryFile, 0, null, $report);
+        $countryJson = @file_get_contents($this->baseUrl . $this->countryFile);
 
         // cURL errors return errorCode 0, so we can not check for "if ($report['error'] !== 0) { ... }"
         // TODO: Datei lokal laden
@@ -95,14 +95,10 @@ class CountryListFormElement extends GenericFormElement implements LoggerAwareIn
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('static_countries');
             $countryNames = $queryBuilder
                 ->select('*')
-                ->from('static_countries')
-                ->where(
-                    $queryBuilder->expr()->in(
-                        'cn_short_en',
-                        $queryBuilder->createNamedParameter(array_keys($countries), Connection::PARAM_STR_ARRAY)
-                    )
-                )
-                ->execute()
+                ->from('static_countries')->where($queryBuilder->expr()->in(
+                'cn_short_en',
+                $queryBuilder->createNamedParameter(array_keys($countries), ArrayParameterType::STRING)
+            ))->executeQuery()
                 ->fetchAllAssociative();
 
             foreach ($countryNames as $countryName) {

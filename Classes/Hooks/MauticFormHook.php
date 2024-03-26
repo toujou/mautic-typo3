@@ -32,7 +32,7 @@ class MauticFormHook implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    const FORM_PROTOTYPE_NAME = 'mautic';
+    public const FORM_PROTOTYPE_NAME = 'mautic';
 
     /**
      * @var FormPersistenceManagerInterface

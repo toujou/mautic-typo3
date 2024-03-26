@@ -18,7 +18,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 class FrontendController extends ActionController
 {
-    const DEFAULT_TEMPLATE_PATH = 'EXT:mautic/Resources/Private/Templates/Form.html';
+    public const DEFAULT_TEMPLATE_PATH = 'EXT:mautic/Resources/Private/Templates/Form.html';
 
     public function formAction(): ResponseInterface
     {

@@ -50,7 +50,6 @@ class AuthorizeMiddleware implements MiddlewareInterface, LoggerAwareInterface
             return $handler->handle($request);
         }
 
-        /** @var UserAspect $context */
         $userAspect = GeneralUtility::makeInstance(Context::class)->getAspect('backend.user');
         $this->state = substr($path, strlen(self::PATH) + 1);
 

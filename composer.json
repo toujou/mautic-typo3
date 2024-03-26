@@ -27,15 +27,12 @@
         "source": "https://github.com/toujou/mautic-typo3"
     },
     "require": {
-        "typo3/cms-core": "^11.5",
-        "typo3/cms-form": "^11.5",
-        "typo3/cms-extbase": "^11.5",
-        "typo3/cms-fluid": "^11.5",
+        "typo3/cms-core": "^11.5 || ^12.4",
+        "typo3/cms-form": "^11.5 || ^12.4",
+        "typo3/cms-extbase": "^11.5 || ^12.4",
+        "typo3/cms-fluid": "^11.5 || ^12.4",
         "mautic/api-library": "^3.0",
         "php-http/multipart-stream-builder": "^1.1.2"
-    },
-    "require-dev": {
-        "ssch/typo3-rector": "^v1.0.6"
     },
     "autoload": {
         "psr-4": {

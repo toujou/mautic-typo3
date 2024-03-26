@@ -60,7 +60,7 @@ abstract class AbstractFormFieldTransformation extends AbstractTransformation im
         }
 
         $fieldData = [
-            'label' => (!empty($this->fieldDefinition['label']) ? $this->fieldDefinition['label'] : $this->fieldDefinition['identifier']),
+            'label' => (empty($this->fieldDefinition['label']) ? $this->fieldDefinition['identifier'] : $this->fieldDefinition['label']),
             'alias' => str_replace('-', '_', $this->fieldDefinition['identifier']),
             'type' => $this->type,
         ];

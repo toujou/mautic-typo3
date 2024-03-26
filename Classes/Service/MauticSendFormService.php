@@ -121,7 +121,7 @@ class MauticSendFormService implements SingletonInterface, LoggerAwareInterface
             $this->createProxyCookieIfExists('mautic_session_id')
         ]);
 
-        if (!empty($cookies)) {
+        if ($cookies !== []) {
             return $request->withHeader('Cookie', implode('; ', $cookies));
         }
 

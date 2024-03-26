@@ -26,10 +26,8 @@ class MauticContactFinisher extends AbstractFinisher implements LoggerAwareInter
 
     protected $contactRepository;
 
-    public function __construct(string $finisherIdentifier = '')
+    public function __construct()
     {
-        parent::__construct($finisherIdentifier);
-
         $this->contactRepository = GeneralUtility::makeInstance(ContactRepository::class);
     }
 
@@ -52,7 +50,7 @@ class MauticContactFinisher extends AbstractFinisher implements LoggerAwareInter
             }
         }
 
-        if (\count($mauticFields) === 0) {
+        if ($mauticFields === []) {
             return;
         }
 
