@@ -26,11 +26,9 @@ use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
 class BackendController extends ActionController
 {
     public const FLASH_MESSAGE_QUEUE = 'marketingautomation.mautic.flashMessages';
-    private ModuleTemplateFactory $moduleTemplateFactory;
-    public function __construct(ModuleTemplateFactory $moduleTemplateFactory)
-    {
-        $this->moduleTemplateFactory = $moduleTemplateFactory;
-    }
+
+    public function __construct(private readonly ModuleTemplateFactory $moduleTemplateFactory)
+    {}
 
     public function showAction(): ResponseInterface
     {
@@ -40,15 +38,15 @@ class BackendController extends ActionController
 
         if ($authorizeService->validateCredentials() === true) {
             if (NULL === AccessTokenData::get()) {
-                $this->view->assign('authorizeButton', $authorizeService->getAuthorizeButton());
+                $moduleTemplate->assign('authorizeButton', $authorizeService->getAuthorizeButton());
             } else {
                 $authorizeService->checkConnection();
             }
         }
 
-        $this->view->assign('configuration', $emConfiguration);
-        $moduleTemplate->setContent($this->view->render());
-        return $this->htmlResponse($moduleTemplate->renderContent());
+        $moduleTemplate->assign('configuration', $emConfiguration);
+        return $moduleTemplate->renderResponse('Backend/Show');
+
     }
 
     /**
@@ -59,7 +57,7 @@ class BackendController extends ActionController
     {
         $emConfiguration = GeneralUtility::makeInstance(YamlConfiguration::class);
 
-        if (substr($configuration['baseUrl'], -1) === '/') {
+        if (str_ends_with($configuration['baseUrl'], '/')) {
             $configuration['baseUrl'] = rtrim($configuration['baseUrl'], '/');
         }
 

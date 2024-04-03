@@ -1,4 +1,6 @@
 <?php
+
+use Bitmotion\Mautic\Transformation\FormField\FileTransformation;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use Bitmotion\Mautic\Hooks\MauticTrackingHook;
@@ -39,14 +41,6 @@ use TYPO3\CMS\Core\Log\Writer\FileWriter;
 defined('TYPO3') || die;
 
 call_user_func(function () {
-    if (Environment::isComposerMode() === false) {
-        $filePath = ExtensionManagementUtility::extPath('mautic') . 'Libraries/vendor/autoload.php';
-        if (@file_exists($filePath)) {
-            require_once $filePath;
-        } else {
-            throw new \Exception(sprintf('File %s does not exist. Dependencies could not be loaded.', $filePath));
-        }
-    }
 
     ExtensionManagementUtility::addPageTSConfig(
         '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:mautic/Configuration/PageTS/Mod/Wizards/NewContentElement.tsconfig">'
@@ -59,6 +53,7 @@ call_user_func(function () {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['configArrayPostProc']['mautic'] =
         MauticTrackingHook::class . '->addTrackingCode';
 
+    // TODO v12change: this is broken in v12, but we can think about ignoring/disabling as we don't really need it
     // Register for hook to show preview of tt_content element of CType="mautic_form" in page module
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem']['mautic_form'] =
         MauticFormPreviewRenderer::class;

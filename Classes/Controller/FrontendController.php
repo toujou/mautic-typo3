@@ -25,7 +25,7 @@ class FrontendController extends ActionController
         $this->view->setTemplatePathAndFilename($this->getTemplatePath());
         $this->view->assignMultiple([
             'mauticBaseUrl' => AuthorizationFactory::createAuthorizationFromExtensionConfiguration()->getBaseUrl(),
-            'data' => $this->configurationManager->getContentObject()->data,
+            'data' => $this->request->getAttribute('currentContentObject')->data,
         ]);
         return $this->htmlResponse();
     }

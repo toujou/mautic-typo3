@@ -31,7 +31,7 @@
         "typo3/cms-form": "^11.5 || ^12.4",
         "typo3/cms-extbase": "^11.5 || ^12.4",
         "typo3/cms-fluid": "^11.5 || ^12.4",
-        "mautic/api-library": "^3.0",
+        "mautic/api-library": "dev-main",
         "php-http/multipart-stream-builder": "^1.1.2"
     },
     "autoload": {

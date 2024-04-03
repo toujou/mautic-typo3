@@ -167,7 +167,7 @@ class MauticAuthorizeService
                 $message ?? ''
             );
 
-            $this->createMessage($message, $title, ContextualFeedbackSeverity::ERROR, true);
+            $this->createMessage($message, $title, ContextualFeedbackSeverity::ERROR->value);
 
             return true;
         }
@@ -214,7 +214,7 @@ class MauticAuthorizeService
     {
         $title = $title ?: $this->translate('authorization.error.title');
         $message = $this->translate('authorization.error.message.' . $message) ?: $message ?: $this->translate('authorization.error.message');
-        $this->createMessage($message, $title, ContextualFeedbackSeverity::ERROR, true);
+        $this->createMessage($message, $title, ContextualFeedbackSeverity::ERROR->value);
     }
 
     protected function addFlashMessage(FlashMessage $message): void
@@ -228,14 +228,14 @@ class MauticAuthorizeService
     {
         $title = $title ?: $this->translate('authorization.warning.title');
         $message = $message ?: $this->translate('authorization.warning.message');
-        $this->createMessage($message, $title, ContextualFeedbackSeverity::WARNING, true);
+        $this->createMessage($message, $title, ContextualFeedbackSeverity::WARNING->value, true);
     }
 
     protected function showSuccessMessage(?string $title = null, ?string $message = null): void
     {
         $title = $title ?: $this->translate('authorization.success.title');
         $message = $message ?: $this->translate('authorization.success.message');
-        $this->createMessage($message, $title, ContextualFeedbackSeverity::OK, true);
+        $this->createMessage($message, $title, ContextualFeedbackSeverity::OK->value, true);
     }
 
     protected function showIncorrectVersionInformation(string $version): void

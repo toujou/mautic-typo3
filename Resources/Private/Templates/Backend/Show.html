@@ -1,3 +1,17 @@
+
+
+<f:layout name="Module" />
+
+<f:section name="Content">
+
+    <f:be.pageRenderer
+        includeJavaScriptModules="{
+            0: '@typo3/backend/modal.js',
+            1: '@typo3/backend/context-menu.js'
+        }"
+    />
+
+
 <h1><f:translate key="LLL:EXT:mautic/Resources/Private/Language/locallang_mod.xlf:module.title"/></h1>
 
 <div role="tabpanel">
@@ -100,4 +114,6 @@
 		</div>
 		<div class="help-block"></div>
 	</div>
+</f:section>
+
 </f:section>
