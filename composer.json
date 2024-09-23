@@ -1,73 +1,84 @@
 {
-    "name": "toujou/mautic-typo3",
-    "description": "Fork of mautic/mautic-typo3 TYPO3 Extension",
-    "keywords": [
-        "TYPO3 CMS",
-        "Marketing",
-        "Automation",
-        "Mautic"
-    ],
-    "type": "typo3-cms-extension",
-    "license": "GPL-2.0-or-later",
-    "homepage": "https://www.Leuchtfeuer.com",
-    "authors": [
-        {
-            "name": "Florian Wessels",
-            "email": "f.wessels@Leuchtfeuer.com",
-            "role": "Developer",
-            "homepage": "https://www.Leuchtfeuer.com"
-        },
-        {
-            "name": "Jurian Jansen",
-            "role": "Developer"
-        }
-    ],
-    "support": {
-        "issues": "https://github.com/toujou/mautic-typo3/issues",
-        "source": "https://github.com/toujou/mautic-typo3"
+  "name": "toujou/mautic-typo3",
+  "description": "Fork of mautic/mautic-typo3 TYPO3 Extension",
+  "keywords": [
+    "TYPO3 CMS",
+    "Marketing",
+    "Automation",
+    "Mautic"
+  ],
+  "type": "typo3-cms-extension",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://www.Leuchtfeuer.com",
+  "authors": [
+    {
+      "name": "Florian Wessels",
+      "email": "f.wessels@Leuchtfeuer.com",
+      "role": "Developer",
+      "homepage": "https://www.Leuchtfeuer.com"
     },
-    "require": {
-        "typo3/cms-core": "^11.5 || ^12.4",
-        "typo3/cms-form": "^11.5 || ^12.4",
-        "typo3/cms-extbase": "^11.5 || ^12.4",
-        "typo3/cms-fluid": "^11.5 || ^12.4",
-        "mautic/api-library": "dev-main",
-        "php-http/multipart-stream-builder": "^1.1.2"
+    {
+      "name": "Jurian Jansen",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/toujou/mautic-typo3/issues",
+    "source": "https://github.com/toujou/mautic-typo3"
+  },
+  "require": {
+    "typo3/cms-core": "^11.5 || ^12.4",
+    "typo3/cms-form": "^11.5 || ^12.4",
+    "typo3/cms-extbase": "^11.5 || ^12.4",
+    "typo3/cms-fluid": "^11.5 || ^12.4",
+    "mautic/api-library": "dev-main",
+    "php-http/multipart-stream-builder": "^1.1.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bitmotion\\Mautic\\": "Classes/"
+    }
+  },
+  "replace": {
+    "typo3-ter/mautic": "self.version"
+  },
+  "suggest": {
+    "sjbr/static-info-tables": "Extended language configuration for preferred locale for Mautic contacts",
+    "typo3/cms-form": "TYPO3 form framework for building Mautic forms in TYPO3",
+    "ext-intl": "For sorting arrays"
+  },
+  "config": {
+    "vendor-dir": "Build/vendor",
+    "bin-dir": "Build/bin",
+    "allow-plugins": {
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true
+    }
+  },
+  "scripts": {
+    "package": "Build/scripts/package.sh"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-main": "v12.x-dev"
     },
-    "autoload": {
-        "psr-4": {
-            "Bitmotion\\Mautic\\": "Classes/"
-        }
-    },
-    "replace": {
-        "typo3-ter/mautic": "self.version"
-    },
-    "suggest": {
-        "sjbr/static-info-tables": "Extended language configuration for preferred locale for Mautic contacts",
-        "typo3/cms-form": "TYPO3 form framework for building Mautic forms in TYPO3",
-        "ext-intl": "For sorting arrays"
-    },
-    "config": {
-        "vendor-dir": "Build/vendor",
-        "bin-dir": "Build/bin",
-        "allow-plugins": {
-            "typo3/class-alias-loader": true,
-            "typo3/cms-composer-installers": true
-        }
-    },
-    "scripts": {
-        "package": "Build/scripts/package.sh"
-    },
-    "extra": {
-        "typo3/cms": {
-            "extension-key": "mautic",
-            "cms-package-dir": "{$vendor-dir}/typo3/cms",
-            "web-dir": "Build/web"
-        }
-    },
+    "typo3/cms": {
+      "extension-key": "mautic",
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": "Build/web"
+    }
+  },
   "repositories": [
-    {"type": "composer", "url": "https://toujou-repo.kodzutsumi-senta.toujou.systems"},
-    {"type": "composer", "url": "https://repo.kodzutsumi-senta.toujou.systems"},
-    {"packagist": false}
+    {
+      "type": "composer",
+      "url": "https://toujou-repo.kodzutsumi-senta.toujou.systems"
+    },
+    {
+      "type": "composer",
+      "url": "https://repo.kodzutsumi-senta.toujou.systems"
+    },
+    {
+      "packagist": false
+    }
   ]
 }
