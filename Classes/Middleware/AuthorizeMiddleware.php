@@ -50,7 +50,6 @@ class AuthorizeMiddleware implements MiddlewareInterface, LoggerAwareInterface
             return $handler->handle($request);
         }
 
-        /** @var UserAspect $context */
         $userAspect = GeneralUtility::makeInstance(Context::class)->getAspect('backend.user');
         $this->state = substr($path, strlen(self::PATH) + 1);
 
@@ -110,10 +109,8 @@ class AuthorizeMiddleware implements MiddlewareInterface, LoggerAwareInterface
                     AccessTokenData::set($accessTokenData);
                 }
 
-                /** @var ObjectManager $objectManager */
-                $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-                $objectManager->get(TagRepository::class)->synchronizeTags();
-
+                // TODO v12change: check if this works (or is necessary at all)
+                GeneralUtility::makeInstance(TagRepository::class)->synchronizeTags();
                 return null;
             }
         } catch (UnexpectedResponseFormatException $exception) {

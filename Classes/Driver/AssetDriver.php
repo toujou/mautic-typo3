@@ -33,10 +33,10 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
 {
     use LoggerAwareTrait;
 
-    const DRIVER_SHORT_NAME = 'mautic';
-    const DRIVER_NAME = 'Mautic';
-    const DRIVER_TYPE = 'mautic';
-    const ROOT_LEVEL_FOLDER = '/';
+    public const DRIVER_SHORT_NAME = 'mautic';
+    public const DRIVER_NAME = 'Mautic';
+    public const DRIVER_TYPE = 'mautic';
+    public const ROOT_LEVEL_FOLDER = '/';
 
     protected $capabilities;
 
@@ -126,7 +126,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
             throw new FileDoesNotExistException('File does not exist', 1555571365);
         }
 
-        if (count($propertiesToExtract) > 0) {
+        if ($propertiesToExtract !== []) {
             $fileInfo = array_intersect_key($fileInfo, array_flip($propertiesToExtract));
         }
 
@@ -191,7 +191,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
         $targetIdentifier = '/asset/' . $newFileName;
         $asset = $this->getAssetRepository()->upload($targetPath, $newFileName);
 
-        if (!empty($asset)) {
+        if ($asset !== []) {
             $assetData = $this->getAssetDataFromResponse($asset);
             $this->assets[$targetIdentifier] = $assetData;
         }
@@ -247,7 +247,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
 
         $asset = $this->getAssetData($fileIdentifier);
 
-        if (empty($asset)) {
+        if ($asset === []) {
             $asset = $this->getAsset($fileIdentifier);
         }
 
@@ -455,7 +455,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
         if (!isset($this->assets[$identifier])) {
             if ($this->assetsLoaded === false) {
                 $asset = $this->getAsset($identifier);
-                if (!empty($asset)) {
+                if ($asset !== []) {
                     $this->assets[$identifier] = $asset;
 
                     return $asset;
@@ -464,7 +464,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
 
             // Find file in database (should only happen when mautic asset was deleted).
             $file = $this->getFileByIdentifier($identifier);
-            if (!empty($file)) {
+            if ($file !== []) {
                 $this->assetsToDelete[$identifier] = $file;
                 $this->assets[$identifier] = $file;
             }
@@ -479,7 +479,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
         $assets = $this->getAssetRepository()->list($identifier, 0, 1);
         $asset = [];
 
-        if (!empty($assets)) {
+        if ($assets !== []) {
             $asset = array_shift($assets);
         }
 
@@ -566,9 +566,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
 
         return $queryBuilder
             ->select('*')
-            ->from('sys_file')
-            ->where($queryBuilder->expr()->eq('storage', $this->storageUid))
-            ->execute()
+            ->from('sys_file')->where($queryBuilder->expr()->eq('storage', $this->storageUid))->executeQuery()
             ->fetchAllAssociative();
     }
 
@@ -579,9 +577,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
         $file = $queryBuilder
             ->select('*')
             ->from('sys_file')
-            ->where($queryBuilder->expr()->eq('storage', $this->storageUid))
-            ->andWhere($queryBuilder->expr()->eq('identifier', $queryBuilder->createNamedParameter('/' . $identifier)))
-            ->execute()
+            ->where($queryBuilder->expr()->eq('storage', $this->storageUid))->andWhere($queryBuilder->expr()->eq('identifier', $queryBuilder->createNamedParameter('/' . $identifier)))->executeQuery()
             ->fetchAssociative();
 
         return ($file === false) ? [] : $file;
@@ -594,9 +590,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
 
         return (bool)$queryBuilder
             ->delete('sys_file')
-            ->where($queryBuilder->expr()->eq('storage', $this->storageUid))
-            ->andWhere($queryBuilder->expr()->eq('identifier', $queryBuilder->createNamedParameter('/' . $identifier)))
-            ->execute();
+            ->where($queryBuilder->expr()->eq('storage', $this->storageUid))->andWhere($queryBuilder->expr()->eq('identifier', $queryBuilder->createNamedParameter('/' . $identifier)))->executeStatement();
     }
 
     protected function removeFileFromDatabase(int $uid)

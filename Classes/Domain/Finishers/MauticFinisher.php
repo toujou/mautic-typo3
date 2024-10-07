@@ -25,10 +25,8 @@ class MauticFinisher extends AbstractFinisher
     /** @var FormRepository */
     protected $formRepository;
 
-    public function __construct(string $finisherIdentifier = '')
+    public function __construct()
     {
-        parent::__construct($finisherIdentifier);
-
         $this->formRepository = GeneralUtility::makeInstance(FormRepository::class);
     }
 
@@ -38,7 +36,7 @@ class MauticFinisher extends AbstractFinisher
     protected function executeInternal()
     {
         $formDefinition = $this->finisherContext->getFormRuntime()->getFormDefinition()->getRenderingOptions();
-        $mauticId = !empty($this->parseOption('mauticId')) ? (int)$this->parseOption('mauticId') : $formDefinition['mauticId'];
+        $mauticId = empty($this->parseOption('mauticId')) ? $formDefinition['mauticId'] : (int)$this->parseOption('mauticId');
         $formValues = $this->transformFormStructure($this->finisherContext->getFormValues());
 
         $this->formRepository->submitForm((int)$mauticId, $formValues);

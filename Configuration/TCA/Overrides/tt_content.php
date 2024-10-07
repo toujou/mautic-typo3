@@ -63,8 +63,8 @@ $GLOBALS['TCA']['tt_content']['columns'] = array_replace_recursive(
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        'LLL:EXT:form/Resources/Private/Language/Database.xlf:tt_content.pi_flexform.formframework.selectPersistenceIdentifier',
-                        0,
+                        'label' => 'LLL:EXT:form/Resources/Private/Language/Database.xlf:tt_content.pi_flexform.formframework.selectPersistenceIdentifier',
+                        'value' => 0,
                     ],
                 ],
                 'minitems' => 1,

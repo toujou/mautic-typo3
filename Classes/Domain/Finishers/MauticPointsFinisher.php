@@ -23,10 +23,8 @@ class MauticPointsFinisher extends AbstractFinisher
 
     protected $contactRepository;
 
-    public function __construct(string $finisherIdentifier = '')
+    public function __construct()
     {
-        parent::__construct($finisherIdentifier);
-
         $this->contactRepository = GeneralUtility::makeInstance(ContactRepository::class);
         $this->mauticId = (int)($_COOKIE['mtc_id'] ?? 0);
     }

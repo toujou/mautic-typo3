@@ -17,7 +17,7 @@ use Bitmotion\Mautic\Domain\Repository\FieldRepository;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\SelectViewHelper;
 
-class MauticPropertiesViewHelper extends SelectViewHelper
+class MauticPropertiesViewHelper extends CoreSelectViewHelper
 {
     protected $fieldRepository;
 
@@ -59,7 +59,7 @@ class MauticPropertiesViewHelper extends SelectViewHelper
         return $options;
     }
 
-    protected function renderOptionTag($value, $label, $isSelected)
+    protected function renderOptionTag(string $value, string $label, bool $isSelected): string
     {
         $output = '<option value="' . htmlspecialchars($value) . '"';
         if ($isSelected) {

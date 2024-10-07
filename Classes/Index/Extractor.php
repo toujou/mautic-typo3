@@ -27,7 +27,7 @@ class Extractor implements ExtractorInterface
         $asset = $this->getAsset($file);
         $data = [];
 
-        if (!empty($asset)) {
+        if ($asset !== []) {
             $data['description'] = $asset['description'];
             $data['alternative'] = $asset['description'];
             $data['title'] = $asset['title'];
@@ -35,11 +35,8 @@ class Extractor implements ExtractorInterface
             if ($file->isDeleted() === false) {
                 $fileName = $file->getForLocalProcessing(false);
                 $imageInfo = GeneralUtility::makeInstance(ImageInfo::class, $fileName);
-
-                if ($imageInfo !== null) {
-                    $data['width'] = $imageInfo->getWidth();
-                    $data['height'] = $imageInfo->getHeight();
-                }
+                $data['width'] = $imageInfo->getWidth();
+                $data['height'] = $imageInfo->getHeight();
             }
         }
 
@@ -77,6 +74,6 @@ class Extractor implements ExtractorInterface
         $assetApi = GeneralUtility::makeInstance(AssetRepository::class);
         $assets = $assetApi->list($mauticAlias);
 
-        return !empty($assets) ? array_shift($assets) : [];
+        return empty($assets) ? [] : array_shift($assets);
     }
 }

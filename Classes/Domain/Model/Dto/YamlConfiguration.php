@@ -85,7 +85,7 @@ class YamlConfiguration implements SingletonInterface
         $settings = array_replace_recursive($this->configurationArray, $extensionConfiguration);
 
         foreach ($settings as $key => $value) {
-            if (property_exists(__CLASS__, $key)) {
+            if (property_exists(self::class, $key)) {
                 $this->$key = $value;
             }
         }

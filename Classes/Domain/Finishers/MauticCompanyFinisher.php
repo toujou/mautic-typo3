@@ -25,10 +25,8 @@ class MauticCompanyFinisher extends AbstractFinisher
 {
     protected $companyRepository;
 
-    public function __construct(string $finisherIdentifier = '')
+    public function __construct()
     {
-        parent::__construct($finisherIdentifier);
-
         $this->companyRepository = GeneralUtility::makeInstance(CompanyRepository::class);
     }
 
@@ -52,7 +50,7 @@ class MauticCompanyFinisher extends AbstractFinisher
             }
         }
 
-        if (\count($mauticFields) === 0) {
+        if ($mauticFields === []) {
             return;
         }
 

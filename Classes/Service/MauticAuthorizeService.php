@@ -12,6 +12,7 @@ namespace Bitmotion\Mautic\Service;
  *  (c) 2020 Florian Wessels <f.wessels@Leuchtfeuer.com>, Leuchtfeuer Digital Marketing
  *
  ***/
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use Bitmotion\Mautic\Controller\BackendController;
 use Bitmotion\Mautic\Domain\Model\AccessTokenData;
@@ -121,10 +122,7 @@ class MauticAuthorizeService
             setcookie(
                 $sessionName,
                 '',
-                $sessionCookie['lifetime'],
-                $sessionCookie['path'],
-                $sessionCookie['domain'],
-                $sessionCookie['secure']
+                ['expires' => $sessionCookie['lifetime'], 'path' => $sessionCookie['path'], 'domain' => $sessionCookie['domain'], 'secure' => $sessionCookie['secure']]
             );
         }
 
@@ -169,7 +167,7 @@ class MauticAuthorizeService
                 $message ?? ''
             );
 
-            $this->createMessage($message, $title, AbstractMessage::ERROR, true);
+            $this->createMessage($message, $title, ContextualFeedbackSeverity::ERROR->value);
 
             return true;
         }
@@ -216,7 +214,7 @@ class MauticAuthorizeService
     {
         $title = $title ?: $this->translate('authorization.error.title');
         $message = $this->translate('authorization.error.message.' . $message) ?: $message ?: $this->translate('authorization.error.message');
-        $this->createMessage($message, $title, AbstractMessage::ERROR, true);
+        $this->createMessage($message, $title, ContextualFeedbackSeverity::ERROR->value);
     }
 
     protected function addFlashMessage(FlashMessage $message): void
@@ -230,14 +228,14 @@ class MauticAuthorizeService
     {
         $title = $title ?: $this->translate('authorization.warning.title');
         $message = $message ?: $this->translate('authorization.warning.message');
-        $this->createMessage($message, $title, AbstractMessage::WARNING, true);
+        $this->createMessage($message, $title, ContextualFeedbackSeverity::WARNING->value, true);
     }
 
     protected function showSuccessMessage(?string $title = null, ?string $message = null): void
     {
         $title = $title ?: $this->translate('authorization.success.title');
         $message = $message ?: $this->translate('authorization.success.message');
-        $this->createMessage($message, $title, AbstractMessage::OK, true);
+        $this->createMessage($message, $title, ContextualFeedbackSeverity::OK->value, true);
     }
 
     protected function showIncorrectVersionInformation(string $version): void
