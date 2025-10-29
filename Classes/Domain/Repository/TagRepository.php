@@ -60,7 +60,7 @@ class TagRepository extends AbstractRepository
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder
             ->update('tx_mautic_domain_model_tag')
-            ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tag['id'], \PDO::PARAM_INT)))
+            ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tag['id'], \TYPO3\CMS\Core\Database\Connection::PARAM_INT)))
             ->set('tstamp', $time)
             ->set('title', $tag['tag'])->set('deleted', 0)->executeStatement();
     }
