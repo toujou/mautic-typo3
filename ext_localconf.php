@@ -91,8 +91,7 @@ call_user_func(function () {
     $driverRegistry->registerDriverClass(
         AssetDriver::class,
         AssetDriver::DRIVER_SHORT_NAME,
-        AssetDriver::DRIVER_NAME,
-        'FILE:EXT:mautic/Configuration/FlexForm/AssetDriver.xml'
+        AssetDriver::DRIVER_NAME
     );
 
     ##################
