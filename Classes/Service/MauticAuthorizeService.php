@@ -167,7 +167,7 @@ class MauticAuthorizeService
                 $message ?? ''
             );
 
-            $this->createMessage($message, $title, ContextualFeedbackSeverity::ERROR->value);
+            $this->createMessage($message, $title, ContextualFeedbackSeverity::ERROR);
 
             return true;
         }
@@ -197,12 +197,12 @@ class MauticAuthorizeService
         );
     }
 
-    protected function createMessage(string $message, string $title, int $severity, bool $storeInSession = true): void
+    protected function createMessage(string $message, string $title, ContextualFeedbackSeverity $severity, bool $storeInSession = true): void
     {
         if ($this->createFlashMessages) {
             $this->addFlashMessage(new FlashMessage($message, $title, $severity, $storeInSession));
         } else {
-            $this->messages[md5($message . $title . $severity)] = [
+            $this->messages[md5($message . $title . $severity->value)] = [
                 'message' => $message,
                 'title' => $title,
                 'severity' => $severity
@@ -214,7 +214,7 @@ class MauticAuthorizeService
     {
         $title = $title ?: $this->translate('authorization.error.title');
         $message = $this->translate('authorization.error.message.' . $message) ?: $message ?: $this->translate('authorization.error.message');
-        $this->createMessage($message, $title, ContextualFeedbackSeverity::ERROR->value);
+        $this->createMessage($message, $title, ContextualFeedbackSeverity::ERROR);
     }
 
     protected function addFlashMessage(FlashMessage $message): void
@@ -228,14 +228,14 @@ class MauticAuthorizeService
     {
         $title = $title ?: $this->translate('authorization.warning.title');
         $message = $message ?: $this->translate('authorization.warning.message');
-        $this->createMessage($message, $title, ContextualFeedbackSeverity::WARNING->value, true);
+        $this->createMessage($message, $title, ContextualFeedbackSeverity::WARNING, true);
     }
 
     protected function showSuccessMessage(?string $title = null, ?string $message = null): void
     {
         $title = $title ?: $this->translate('authorization.success.title');
         $message = $message ?: $this->translate('authorization.success.message');
-        $this->createMessage($message, $title, ContextualFeedbackSeverity::OK->value, true);
+        $this->createMessage($message, $title, ContextualFeedbackSeverity::OK, true);
     }
 
     protected function showIncorrectVersionInformation(string $version): void
