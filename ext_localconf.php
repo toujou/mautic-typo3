@@ -42,10 +42,6 @@ defined('TYPO3') || die;
 
 call_user_func(function () {
 
-    ExtensionManagementUtility::addPageTSConfig(
-        '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:mautic/Configuration/PageTS/Mod/Wizards/NewContentElement.tsconfig">'
-    );
-
     ###################
     #      HOOKS      #
     ###################
@@ -91,8 +87,7 @@ call_user_func(function () {
     $driverRegistry->registerDriverClass(
         AssetDriver::class,
         AssetDriver::DRIVER_SHORT_NAME,
-        AssetDriver::DRIVER_NAME,
-        'FILE:EXT:mautic/Configuration/FlexForm/AssetDriver.xml'
+        AssetDriver::DRIVER_NAME
     );
 
     ##################
