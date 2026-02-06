@@ -22,7 +22,7 @@ class FrontendController extends ActionController
 
     public function formAction(): ResponseInterface
     {
-        $this->view->setTemplatePathAndFilename($this->getTemplatePath());
+        $this->view->getRenderingContext()->getTemplatePaths()->setTemplatePathAndFilename($this->getTemplatePath());
         $this->view->assignMultiple([
             'mauticBaseUrl' => AuthorizationFactory::createAuthorizationFromExtensionConfiguration()->getBaseUrl(),
             'data' => $this->request->getAttribute('currentContentObject')->data,

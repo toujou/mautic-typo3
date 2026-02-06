@@ -15,7 +15,6 @@ namespace Bitmotion\Mautic\Index;
 use TYPO3\CMS\Core\Resource\File;
 use Bitmotion\Mautic\Domain\Repository\AssetRepository;
 use Bitmotion\Mautic\Driver\AssetDriver;
-use TYPO3\CMS\Core\Resource;
 use TYPO3\CMS\Core\Resource\Index\ExtractorInterface;
 use TYPO3\CMS\Core\Type\File\ImageInfo;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

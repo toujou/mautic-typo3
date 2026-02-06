@@ -12,8 +12,8 @@ namespace Bitmotion\Mautic\Service;
  *  (c) 2020 Florian Wessels <f.wessels@Leuchtfeuer.com>, Leuchtfeuer Digital Marketing
  *
  ***/
+use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use Bitmotion\Mautic\Controller\BackendController;
 use Bitmotion\Mautic\Domain\Model\AccessTokenData;
 use Bitmotion\Mautic\Domain\Model\Dto\YamlConfiguration;
@@ -21,7 +21,6 @@ use Bitmotion\Mautic\Mautic\AuthorizationFactory;
 use Bitmotion\Mautic\Mautic\OAuth;
 use Bitmotion\Mautic\Middleware\AuthorizeMiddleware;
 use Mautic\MauticApi;
-use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
@@ -79,7 +78,7 @@ class MauticAuthorizeService
     public function getAuthorizeButton(): string
     {
         $title = htmlspecialchars($this->translate('authorization.withMautic'));
-        $icon = GeneralUtility::makeInstance(IconFactory::class)->getIcon('tx_mautic-mautic-icon', Icon::SIZE_SMALL);
+        $icon = GeneralUtility::makeInstance(IconFactory::class)->getIcon('tx_mautic-mautic-icon', IconSize::SMALL);
         $url = GeneralUtility::getIndpEnv('TYPO3_REQUEST_HOST') . AuthorizeMiddleware::PATH;
 
         return sprintf(

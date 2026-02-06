@@ -28,11 +28,9 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Context\UserAspect;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Http\Stream;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 class AuthorizeMiddleware implements MiddlewareInterface, LoggerAwareInterface
 {
