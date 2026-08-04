@@ -9,7 +9,6 @@ return [
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'delete' => 'deleted',
-        'searchFields' => 'title',
         'typeicon_classes' => [
             'default' => 'mimetypes-x-tx_marketingautomation_persona',
         ],
