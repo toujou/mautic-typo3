@@ -38,7 +38,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
     public const DRIVER_TYPE = 'mautic';
     public const ROOT_LEVEL_FOLDER = '/';
 
-    protected \TYPO3\CMS\Core\Resource\Capabilities $capabilities;
+    protected Capabilities $capabilities;
 
     protected string $baseUrl;
 
@@ -61,9 +61,9 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
         parent::__construct($configuration);
 
         $this->capabilities = new Capabilities(
-            \TYPO3\CMS\Core\Resource\Capabilities::CAPABILITY_BROWSABLE
-            | \TYPO3\CMS\Core\Resource\Capabilities::CAPABILITY_PUBLIC
-            | \TYPO3\CMS\Core\Resource\Capabilities::CAPABILITY_WRITABLE
+            Capabilities::CAPABILITY_BROWSABLE
+            | Capabilities::CAPABILITY_PUBLIC
+            | Capabilities::CAPABILITY_WRITABLE
         );
     }
 
@@ -74,7 +74,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
         }
     }
 
-    public function mergeConfigurationCapabilities(Capabilities $capabilities): \TYPO3\CMS\Core\Resource\Capabilities
+    public function mergeConfigurationCapabilities(Capabilities $capabilities): Capabilities
     {
         $this->capabilities->and($capabilities);
         return $this->capabilities;
@@ -144,7 +144,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
         return $this->objectExists($fileIdentifier);
     }
 
-    public function folderExists($folderIdentifier): bool
+    public function folderExists(string $folderIdentifier): bool
     {
         if ($folderIdentifier === self::ROOT_LEVEL_FOLDER) {
             return true;
@@ -409,7 +409,7 @@ class AssetDriver extends AbstractHierarchicalFilesystemDriver implements Logger
         return count($this->getFoldersInFolder($folderIdentifier, 0, 0, $recursive, $folderNameFilterCallbacks));
     }
 
-    public function dumpFileContents($identifier): void
+    public function dumpFileContents(string $identifier): void
     {
         $this->logger->debug('dumpFileContents');
     }

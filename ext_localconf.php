@@ -2,7 +2,6 @@
 
 use Bitmotion\Mautic\Transformation\FormField\FileTransformation;
 use TYPO3\CMS\Core\Core\Environment;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use Bitmotion\Mautic\Hooks\MauticTrackingHook;
 use Bitmotion\Mautic\Hooks\PageLayoutView\MauticFormPreviewRenderer;
 use Bitmotion\Mautic\Hooks\TCEmainHook;

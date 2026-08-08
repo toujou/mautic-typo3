@@ -17,11 +17,8 @@ use Psr\Http\Message\ResponseInterface;
 use Bitmotion\Mautic\Domain\Model\AccessTokenData;
 use Bitmotion\Mautic\Domain\Model\Dto\YamlConfiguration;
 use Bitmotion\Mautic\Service\MauticAuthorizeService;
-use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
-use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
 
 class BackendController extends ActionController
 {
@@ -62,6 +59,6 @@ class BackendController extends ActionController
         }
 
         $emConfiguration->save($configuration);
-        $this->redirect('show');
+        return $this->redirect('show');
     }
 }

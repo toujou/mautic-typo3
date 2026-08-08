@@ -14,7 +14,6 @@ namespace Bitmotion\Mautic\Domain\Model\FormElement;
  ***/
 use Doctrine\DBAL\ArrayParameterType;
 use Bitmotion\Mautic\Mautic\AuthorizationFactory;
-use Doctrine\DBAL\Connection;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Database\ConnectionPool;
